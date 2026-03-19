@@ -58,7 +58,7 @@ export function buildIdeaConfigSteps(options?: {
       title: "Configurar servidor ERP",
       content:
         options?.serverContent ??
-        "Clique em Rede para localizar a opção: Configuração do servidor ERP. Configure: Tipo = Integração Padrão; Endereço = IP do Web Service; Porta = Porta do Web Service; Usuário = seu nome de usuário.",
+        "Clique em Rede para localizar a opção: Configuração do servidor ERP. Configure: Tipo = Integração Padrão; Endereço = endereço da integração; Porta = Porta do Web Service; Usuário = seu nome de usuário.",
     },
     IDEA_BASE_STEPS.configureTimeout,
     {
