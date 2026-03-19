@@ -1,19 +1,27 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { erpIntegrations, ERPIntegration } from "@/data/erpIntegrations";
+import { Documentation } from "@/types/doc";
 import { DocSidebar } from "@/components/docs/DocSidebar";
 import { DocContent } from "@/components/docs/DocContent";
 import { DocHeader } from "@/components/docs/DocHeader";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ExternalLink, FileText } from "lucide-react";
 
 const Index = () => {
   const [selectedErp, setSelectedErp] = useState<ERPIntegration>(erpIntegrations[0]);
   const [activeSection, setActiveSection] = useState("introduction");
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [adminDocs, setAdminDocs] = useState<Documentation[]>([]);
+
+  useEffect(() => {
+    const saved = JSON.parse(localStorage.getItem("docs") || "[]");
+    setAdminDocs(saved);
+  }, []);
 
   return (
     <div className="min-h-screen bg-background">
       <DocHeader />
-      
+
       {/* Mobile menu button */}
       <button
         onClick={() => setSidebarOpen(!sidebarOpen)}
@@ -28,10 +36,11 @@ const Index = () => {
           fixed lg:sticky top-[var(--doc-header-height)] left-0 z-40
           h-[calc(100vh-var(--doc-header-height))] w-[var(--doc-nav-width)]
           transition-transform duration-300 lg:translate-x-0
-          ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}
+          ${sidebarOpen ? "translate-x-0" : "-translate-x-full"}
         `}>
           <DocSidebar
             integrations={erpIntegrations}
+            adminDocs={adminDocs}
             selectedErp={selectedErp}
             activeSection={activeSection}
             onSelectErp={(erp) => {
@@ -46,7 +55,7 @@ const Index = () => {
           />
         </div>
 
-        {/* Overlay for mobile */}
+        {/* Overlay mobile */}
         {sidebarOpen && (
           <div
             className="fixed inset-0 bg-foreground/20 z-30 lg:hidden"
