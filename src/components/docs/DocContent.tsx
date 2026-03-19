@@ -167,7 +167,7 @@ const HowItWorksSection = ({ erp }: { erp: ERPIntegration }) => (
     <div className="rounded-xl border border-border bg-card p-6 mb-6">
       <h3 className="doc-heading-3 flex items-center gap-2 mb-4">
         <span className="px-2 py-0.5 rounded text-xs font-semibold bg-primary/10 text-primary">EXPORTAÇÃO</span>
-        Audaces IDEA → ERP
+        Audaces → ERP
       </h3>
       <p className="doc-paragraph text-sm">{erp.integrationDetails.exportDescription}</p>
       <ul className="space-y-2">
